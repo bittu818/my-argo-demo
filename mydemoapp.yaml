@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: employee-app
+  namespace: argodemo
 spec:
   replicas: 1
   selector:
@@ -23,6 +24,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: employee-service
+  namespace: argodemo
 spec:
   type: NodePort
   selector:
@@ -36,6 +38,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: mysql-config
+  namespace: argodemo
 data:
   database: employeesdb
 ---
@@ -43,6 +46,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql
+  namespace: argodemo
 spec:
   selector:
     matchLabels:
@@ -74,6 +78,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: mysql-secret
+  namespace: argodemo
 type: Opaque
 data:
   password: cm9vdHBhc3M=
